@@ -6,7 +6,9 @@ import { normalizePath } from "lib/utils/normalize-path"
 test("normalizePath collapses every repeated slash group (idempotent)", () => {
   expect(normalizePath("//a//b///c")).toBe("a/b/c")
   expect(normalizePath("///a/b/")).toBe("a/b")
-  expect(normalizePath("/a//b//c")).toBe(normalizePath(normalizePath("/a//b//c")))
+  expect(normalizePath("/a//b//c")).toBe(
+    normalizePath(normalizePath("/a//b//c")),
+  )
   expect(normalizePath("////x//y////z")).toBe("x/y/z")
   expect(normalizePath("/")).toBe("")
   expect(normalizePath("a\\\\b//c")).toBe("a/b/c")
